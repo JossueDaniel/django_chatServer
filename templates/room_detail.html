@@ -1,0 +1,67 @@
+{% extends '_base.html' %}
+
+{% block title %}Sala: {{ room.name }}{% endblock title %}
+
+{% block content %}
+    <h1>Sala de chat: {{ room.name }}</h1>
+    <div id="room-id" data-room-id="{{ room.pk }}"></div>
+    <div id="chat"></div>
+    <div id="chat-input">
+        <input id="chat-message-input" type="text"/>
+        <input id="chat-message-submit" type="submit" value="Enviar"/>
+    </div>
+
+
+    <script>
+        // Obtener el ID de la sala desde el atributo 'data-room-id' en el elemento HTML
+        const roomId = document.getElementById('room-id').getAttribute('data-room-id');
+        const url = 'ws://' + window.location.host + '/ws/' + roomId + '/';
+        let chatSocket;
+
+        function connectWebSocket() {
+            chatSocket = new WebSocket(url);
+
+            chatSocket.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                const chat = document.getElementById('chat');
+                chat.innerHTML += '<div>' + data.message + '</div>';
+                chat.scrollTop = chat.scrollHeight;
+            };
+
+            chatSocket.onclose = function(event) {
+                console.error('El chat socket se ha cerrado inesperadamente');
+                // Intentar restablecer la conexión
+                setTimeout(connectWebsocket, 1000)
+            };
+
+            chatSocket.onerror = function(event) {
+                console.error('Error en el websocket', error);
+            };
+        }
+
+        connectWebSocket();
+
+        const input = document.getElementById('chat-message-input');
+        const submitButton = document.getElementById('chat-message-submit');
+
+        submitButton.addEventListener('click', function(event) {
+            const message = input.value;
+            if (message && chatSocket.readyState === WebSocket.OPEN) {
+                chatSocket.send(JSON.stringify({'message': message})),
+                input.value = '';
+                input.focus();
+            } else {
+                console.error('No se ha podido enviar el mensaje, webSocket cerrado')
+            }
+        });
+
+        input.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                submitButton.click();
+            }
+        });
+        input.focus();
+    </script>
+
+{% endblock content %}
