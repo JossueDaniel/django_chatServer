@@ -3,10 +3,33 @@
 {% block title %}Iniciar sesión{% endblock title %}
 
 {% block content %}
-    <h1>Iniciar sesión</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Iniciar sesión</button>
-    </form>
+    <br/>
+    <div class="container mx-auto">
+        <div class="grid grid-cols-3">
+            <div class="col-start-2 border">
+                <h1 class="text-indigo-900 font-bold text-2xl text-center p-2">Iniciar sesión</h1>
+                <form method="post" class="mt-2 mx-8">
+                    {% csrf_token %}
+                    <div class="my-4">
+                        <label class="block font-semibold mb-2">Nombre de usuario</label>
+                        <input type="text" name="username" class="shadow appearance-none
+                        border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none
+                        focus:shadow-outline"/>
+                    </div>
+                    <div class="my-4">
+                        <label class="block font-semibold mb-2">Contraseña</label>
+                        <input type="password" name="password" class="shadow appearance-none
+                        border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none
+                        focus:shadow-outline"/>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="my-4 bg-indigo-900 rounded-xl p-2 px-4 text-white
+                        font-semibold hover:bg-indigo-700">
+                            Iniciar sesión
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
