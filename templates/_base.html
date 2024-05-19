@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Chat server{% endblock title %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+<!--    css-->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <header class="bg-indigo-900 text-white font-semibold">
     <div class="container mx-auto">

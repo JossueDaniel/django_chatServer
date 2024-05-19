@@ -14,7 +14,7 @@
             <div class="col-span-2">
                 <div id="room-id" data-room-id="{{ room.pk }}"></div>
                 <div id="request-user" data-user-id="{{ user.username }}"></div>
-                <div id="chat" class="p-2 overflow-y-auto h-96"></div>
+                <div id="chat" class="p-2 overflow-y-auto h-96 mx-8"></div>
                 <div id="chat-input" class="p-2 mx-8">
                     <div class="flex flex-row gap-4">
                         <div class="basis-3/4">
@@ -48,13 +48,14 @@
             chatSocket.onmessage = function(event) {
                 const data = JSON.parse(event.data);
                 const chat = document.getElementById('chat');
-                const dateOptions = {hour: 'numeric', minute: 'numeric', hour12: true};
+                const dateOptions = {hour: '2-digit', minute: '2-digit', hour12: false};
                 const datetime = new Date(data.datetime).toLocaleString('en-US', dateOptions);
                 const isMe = data.user === requestUser;
                 const source = isMe ? 'me' : 'other';
                 const name = isMe ? 'Yo' : data.user;
-                chat.innerHTML += '<div>' + '<strong>' + name + '</strong> ' +
-                 '<span>' + datetime + '</span><br>' + data.message + '</div>';
+                chat.innerHTML += '<div class=" p-3 rounded-2xl w-80 my-2 ' + source + '">'
+                + '<strong>' + name + '</strong> ' +
+                 '<span class="text-xs">' + datetime + '</span><br>' + data.message + '</div>';
                 chat.scrollTop = chat.scrollHeight;
             };
 
