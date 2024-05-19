@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Room
 
@@ -15,3 +15,9 @@ class RoomDetailView(LoginRequiredMixin, DetailView):
     model = Room
     context_object_name = 'room'
     template_name = 'room_detail.html'
+
+
+class RoomCreateView(CreateView):
+    model = Room
+    fields = ['name', 'owner']
+    template_name = 'room_new.html'
