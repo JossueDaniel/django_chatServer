@@ -3,12 +3,26 @@
 {% block title %}Inicio salas de chat{% endblock title %}
 
 {% block content %}
-    <h1>Salas de chat</h1>
-    <div>
-        <ul>
-            {% for room in rooms %}
-                <li><a href="{% url 'room_detail' room.pk %}">{{ room.name }}</a></li>
-            {% endfor %}
-        </ul>
+    <br/>
+    <div class="container mx-auto">
+        <h1 class="text-indigo-900 font-bold text-2xl">Salas de chat</h1>
+        <div class="grid grid-cols-3 *:border *:rounded-lg gap-2 text-indigo-900 text-lg font-semibold">
+            <div class="p-3">
+                <h2>Mis salas</h2>
+            </div>
+            <div class="p-3">
+                <h2>Salas de la comunidad</h2>
+                <ul class="text-black divide-y divide-slate-200">
+                    {% for room in rooms %}
+                    <li class="hover:bg-slate-200 py-2">
+                        <a class="ml-2" href="{% url 'room_detail' room.pk %}">{{ room.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="p-3">
+                <h2>Crear sala</h2>
+            </div>
+        </div>
     </div>
 {% endblock content %}
