@@ -3,13 +3,35 @@
 {% block title %}Sala: {{ room.name }}{% endblock title %}
 
 {% block content %}
-    <h1>Sala de chat: {{ room.name }}</h1>
-    <div id="room-id" data-room-id="{{ room.pk }}"></div>
-    <div id="request-user" data-user-id="{{ user.username }}"></div>
-    <div id="chat"></div>
-    <div id="chat-input">
-        <input id="chat-message-input" type="text"/>
-        <input id="chat-message-submit" type="submit" value="Enviar"/>
+    <br/>
+    <div class="container mx-auto">
+        <div class="grid grid-cols-3 divide-x">
+            <div>
+                <h1 class="text-indigo-900 font-bold text-2xl text-center p-2">
+                    Sala de chat: <span class="text-black">{{ room.name }}</span>
+                </h1>
+            </div>
+            <div class="col-span-2">
+                <div id="room-id" data-room-id="{{ room.pk }}"></div>
+                <div id="request-user" data-user-id="{{ user.username }}"></div>
+                <div id="chat" class="p-2 overflow-y-auto h-96"></div>
+                <div id="chat-input" class="p-2 mx-8">
+                    <div class="flex flex-row gap-4">
+                        <div class="basis-3/4">
+                            <input id="chat-message-input" type="text" class="shadow appearance-none
+                            border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none
+                            focus:shadow-outline"/>
+                        </div>
+                        <div>
+                            <input id="chat-message-submit" type="submit" value="Enviar" class="shadow
+                            appearance-none border rounded-xl w-full py-2 px-3 text-white leading-tight
+                            focus:outline-none focus:shadow-outline bg-indigo-900 font-semibold
+                            hover:bg-indigo-700 cursor-pointer"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -30,7 +52,7 @@
                 const datetime = new Date(data.datetime).toLocaleString('en-US', dateOptions);
                 const isMe = data.user === requestUser;
                 const source = isMe ? 'me' : 'other';
-                const name = isMe ? 'Me' : data.user;
+                const name = isMe ? 'Yo' : data.user;
                 chat.innerHTML += '<div>' + '<strong>' + name + '</strong> ' +
                  '<span>' + datetime + '</span><br>' + data.message + '</div>';
                 chat.scrollTop = chat.scrollHeight;
