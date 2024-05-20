@@ -10,14 +10,29 @@
         font-semibold my-2">
             <div class="p-3">
                 <h2>Mis salas</h2>
+                <ul class="text-black divide-y divide-slate-200">
+                    {% if user.is_authenticated %}
+                        {% if rooms %}
+                            {% for room in rooms %}
+                                <li class="hover:bg-slate-200 py-2">
+                                    <a class="ml-2" href="{% url 'room_detail' room.pk %}">{{ room.name }}</a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <p>No tiene salas creadas</p>
+                        {% endif %}
+                    {% else %}
+                        <p>Inicie sesión para ver sus salas de chat</p>
+                    {% endif %}
+                </ul>
             </div>
             <div class="p-3">
                 <h2>Salas de la comunidad</h2>
                 <ul class="text-black divide-y divide-slate-200">
-                    {% for room in rooms %}
-                    <li class="hover:bg-slate-200 py-2">
-                        <a class="ml-2" href="{% url 'room_detail' room.pk %}">{{ room.name }}</a>
-                    </li>
+                    {% for room in all_rooms %}
+                        <li class="hover:bg-slate-200 py-2">
+                            <a class="ml-2" href="{% url 'room_detail' room.pk %}">{{ room.name }}</a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>

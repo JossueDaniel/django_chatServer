@@ -10,6 +10,18 @@ class RoomListView(ListView):
     context_object_name = 'rooms'
     template_name = 'home.html'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(owner=self.request.user)
+
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['all_rooms'] = Room.objects.all()
+        return context
+
 
 class RoomDetailView(LoginRequiredMixin, DetailView):
     model = Room

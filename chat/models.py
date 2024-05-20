@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Room(models.Model):
     name = models.CharField(max_length=100)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         # Asigna el usuario autenticado como propietario de la sala
