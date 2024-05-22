@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Room
@@ -29,7 +29,12 @@ class RoomDetailView(LoginRequiredMixin, DetailView):
     template_name = 'room_detail.html'
 
 
-class RoomCreateView(CreateView):
+class RoomCreateView(LoginRequiredMixin, CreateView):
     model = Room
-    fields = ['name', 'owner']
+    fields = ['name',]
+    success_url = reverse_lazy('room_list')
     template_name = 'room_new.html'
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)

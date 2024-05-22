@@ -10,6 +10,9 @@
                 <h1 class="text-indigo-900 font-bold text-2xl text-center p-2">
                     Sala de chat: <span class="text-black">{{ room.name }}</span>
                 </h1>
+                <a href="{% url 'room_list' %}" class="text-red-700 hover:text-red-500">
+                    <p class="text-end mr-10">Salir de la sala de chat</p>
+                </a>
             </div>
             <div class="col-span-2">
                 <div id="room-id" data-room-id="{{ room.pk }}"></div>
