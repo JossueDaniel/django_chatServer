@@ -15,7 +15,22 @@
                         {% if rooms %}
                             {% for room in rooms %}
                                 <li class="hover:bg-slate-200 py-2">
-                                    <a class="ml-2" href="{% url 'room_detail' room.pk %}">{{ room.name }}</a>
+                                    <div class="grid grid-cols-3 items-center">
+                                        <div class="ml-2">
+                                            <a href="{% url 'room_detail' room.pk %}">
+                                                {{ room.name }}
+                                            </a>
+                                        </div>
+                                        <div class="col-start-3">
+                                            <form method="post" action="{% url 'room_delete' room.pk %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="p-1 px-4 rounded-xl bg-red-700
+                                                    text-white text-sm hover:bg-red-500">
+                                                    Borrar sala
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </li>
                             {% endfor %}
                         {% else %}

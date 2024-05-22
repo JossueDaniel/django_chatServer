@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Room
 
@@ -38,3 +38,9 @@ class RoomCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
+
+
+class RoomDeleteView(DeleteView):
+    model = Room
+    success_url = reverse_lazy('room_list')
+    template_name = 'home.tml'
