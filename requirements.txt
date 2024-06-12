@@ -12,6 +12,7 @@ cryptography==42.0.7
 daphne==4.1.2
 dj-database-url==2.1.0
 Django==5.0.6
+django-redis==5.4.0
 environs==11.0.0
 gunicorn==22.0.0
 h11==0.14.0
@@ -28,6 +29,7 @@ pyasn1_modules==0.4.0
 pycparser==2.22
 pyOpenSSL==24.1.0
 python-dotenv==1.0.1
+redis==5.0.4
 service-identity==24.1.0
 setuptools==70.0.0
 six==1.16.0
