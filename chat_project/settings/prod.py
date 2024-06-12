@@ -9,7 +9,7 @@ ADMINS = [
     ('Daniel Egas', 'dannysjossue07@gmail.com')
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # DATABASES = {
 #     'default': {
@@ -28,14 +28,17 @@ DATABASES = {
     )
 }
 
-REDIS_URL = 'redis://redis:6379'
+REDIS_URL = os.environ.get('REDIS_URL')
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': REDIS_URL,
-        # 'OPTIONS': {
-        #     'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        # }
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
     }
 }
 CHANNEL_LAYERS['default']['CONFIG']['hosts'] = [REDIS_URL]
+
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
