@@ -9,7 +9,7 @@ ADMINS = [
     ('Daniel Egas', 'dannysjossue07@gmail.com')
 ]
 
-ALLOWED_HOSTS = ['onrender.com']
+ALLOWED_HOSTS = ['*']
 
 # DATABASES = {
 #     'default': {
