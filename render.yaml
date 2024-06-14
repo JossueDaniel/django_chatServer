@@ -3,10 +3,6 @@ databases:
     plan: free
     databaseName: db_chatserver
     user: danny
-  - name: redis_chatserver
-    databaseName: redis
-    plan: free
-    region: oregon
 
 services:
   - type: web
@@ -25,6 +21,11 @@ services:
       - key: WEB_CONCURRENCY
         value: 4
       - key: REDIS_URL
-        fromDatabase:
+        fromService:
           name: redis_chatserver
+          type: redis
           property: connectionString
+
+  - type: redis
+    name: redis_chatserver
+    plan: free
