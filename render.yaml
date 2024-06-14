@@ -29,3 +29,4 @@ services:
   - type: redis
     name: redis_chatserver
     plan: free
+    ipAllowList: [] # only allow internal connections
