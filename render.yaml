@@ -22,8 +22,8 @@ services:
         value: 4
       - key: REDIS_URL
         fromService:
-          name: redis_chatserver
           type: redis
+          name: redis_chatserver
           property: connectionString
 
   - type: redis
