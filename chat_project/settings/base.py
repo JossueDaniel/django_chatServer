@@ -92,9 +92,9 @@ WSGI_APPLICATION = 'chat_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 #
-DATABASES = {
-    'default': env.dj_db_url('DATABASE_URL', default="postgres://postgres@db/postgres")
-}
+# DATABASES = {
+#     'default': env.dj_db_url('DATABASE_URL', default="postgres://postgres@db/postgres")
+# }
 
 
 # Password validation
@@ -150,7 +150,7 @@ LOGIN_REDIRECT_URL = 'room_list'
 LOGOUT_REDIRECT_URL = 'room_list'
 
 # Channels-redis settings
-REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379')
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
 
 CHANNEL_LAYERS = {
     'default': {
