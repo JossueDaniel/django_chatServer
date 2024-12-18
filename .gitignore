@@ -1,6 +1,6 @@
-../.venv
-chat_project/.env
 __pycache__/
 db.sqlite3
 .env
-./data/
+data
+.idea
+.venv

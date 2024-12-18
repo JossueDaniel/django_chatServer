@@ -1,2 +1,6 @@
 .env
 .venv
+.idea
+db.sqlite3
+.dockerignore
+.gitignore
