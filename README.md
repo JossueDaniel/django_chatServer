@@ -1,9 +1,9 @@
 # Django_ChatServer
-Este proyecto es una aplicación web que permite que los usuarios se registren y una vez autenticados se les permite unirse a salas de chat en donde podrán comunicarse gracias al protocolo websocket, los usuarios también tienen la opción de crear y eliminar sus propias salas.
+Este proyecto es una aplicación web que permite a los usuarios regstrarse y una vez autenticados se les da el permiso para unirse a salas de chat en donde podrán comunicarse gracias al protocolo websocket, los usuarios también tienen la opción de crear y eliminar sus propias salas.
 
 ## Características
 - Protocolo WebSocket para la comunicación en tiempo real.
-- Base de datos postgres para alamcenar la infromación de los usuarios y las salas de chat.
+- Base de datos postgres para almacenar la información de los usuarios y las salas de chat.
 - Arquitectura Pub/Sub con redis lo que permite manejar los mensajes en tiempo real entre usuaios conectados al websocket.
 
 ## Requisitos previos
@@ -46,7 +46,7 @@ environment:
   - SECRET_KEY=my-custom-secret-key
 ```
 
-El contendor de la aplicación web se ejecuta en entrono de desarrollo, si se requiere ejecutar en un entorno de producción se debe especificar en la variable de entorno del contenedor en el archivo compose.yml las configuraciones del archivo prod.py que es para entorno de producción. (opcional)
+El contenedor de la aplicación web se ejecuta en entorno de desarrollo, si se requiere ejecutar en un entorno de producción se debe especificar en la variable de entorno del contenedor en el archivo compose.yml las configuraciones del archivo prod.py que es para entorno de producción. (opcional)
 ```plaintext
 environment:
   - DJANGO_SETTINGS_MODULE=django_project.settings.prod
