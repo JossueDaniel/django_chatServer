@@ -29,17 +29,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = env.str('SECRET_KEY')
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your-secret-key')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = env.bool("DEBUG", default=False)
-DEBUG = 'RENDER' not in os.environ
-
-ALLOWED_HOSTS = []
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -96,7 +89,6 @@ WSGI_APPLICATION = 'chat_project.wsgi.application'
 #     'default': env.dj_db_url('DATABASE_URL', default="postgres://postgres@db/postgres")
 # }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -132,10 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]  # new
-if not DEBUG:
-    STATIC_ROOT = BASE_DIR / "staticfiles"  # new
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # new
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
