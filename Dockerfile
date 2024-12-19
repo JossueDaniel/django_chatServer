@@ -10,3 +10,5 @@ COPY requirements.txt /code/
 RUN pip install --no-cache-dir -r /code/requirements.txt
 
 COPY 	. /code/
+
+RUN python manage.py collectstatic
