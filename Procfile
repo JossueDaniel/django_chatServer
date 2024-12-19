@@ -1,0 +1,1 @@
+web: gunicorn chat_project.wsgi --env DJANGO_SETTINGS_MODULE=chat_project.settings.prod
