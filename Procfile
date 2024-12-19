@@ -1,1 +1,1 @@
-web: python manage.py collectstatic && gunicorn chat_project.wsgi --env DJANGO_SETTINGS_MODULE=chat_project.settings.prod
+web: gunicorn chat_project.wsgi --env DJANGO_SETTINGS_MODULE=chat_project.settings.prod
