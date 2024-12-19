@@ -9,7 +9,7 @@ ADMINS = [
     ('Daniel Egas', 'dannysjossue07@gmail.com')
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://web-production-6447a.up.railway.app/']
 
 DATABASES = {
     'default': dj_database_url.config(
