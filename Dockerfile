@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir -r /code/requirements.txt
 
 COPY 	. /code/
 
-RUN python manage.py collectstatic
+RUN python manage.py collectstatic --settings=chat_project.settings.local
