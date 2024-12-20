@@ -11,9 +11,10 @@ RUN pip install --no-cache-dir -r /code/requirements.txt
 
 COPY 	. /code/
 
-RUN python manage.py collectstatic --settings=chat_project.settings.local
+RUN python manage.py collectstatic --settings=chat_project.settings.prod
 
 EXPOSE 8000
 
-CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:$PORT"]
+CMD ["gunicorn", "chat_project.wsgi:application", "--bind", "0.0.0.0:8000", "--env", "DJANGO_SETTINGS_MODULE=chat_project.settings.prod"]
+
 
